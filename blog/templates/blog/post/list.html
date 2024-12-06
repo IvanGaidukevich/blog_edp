@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Все посты блога{% endblock %}
+
+{% block content %}
+    <h1>Блог о путешествиях</h1>
+    {% for post in posts %}
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <div>{{ post.body }}</div>
+        <div>{{ post.published }} от автора {{ post.author }}</div>
+    {% endfor %}
+{% endblock %}
