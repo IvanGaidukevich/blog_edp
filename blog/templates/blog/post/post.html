@@ -9,8 +9,25 @@
     <p>Автор {{ post.author.username }}</p>
     <p>Опубликован {{ post.published }}</p>
     </div>
+
     <div>
-    <form method="post">
+    {% for comment in comments %}
+        <div class="comment">
+            <p>Комментраий от {{ comment.author.username }}</p>
+            <p>{{ comment.body }}</p>
+        </div>
+        <div>
+        {%  if comment.author == user %}
+            <a href="{% url 'blog:delete_comment' comment.id %}">Удалить</a>
+        {% endif %}
+        </div>
+    {% empty %}
+        <p>Пока нет комментариев</p>
+    {%  endfor %}
+    </div>
+
+    <div>
+    <form action="{% url 'blog:post_comment' post.id %}" method="post">
         {{ form.as_p }}
         <input type="submit" value="оставить коммент">
         {% csrf_token %}

@@ -1,0 +1,11 @@
+{%  extends "blog/base.html" %}
+
+{% block title %}Успешно добавлен{% endblock %}
+
+{% block content %}
+
+    {% if comment %}
+        <p><a href="{{ post.get_absolute_url }}">Ваш коммент успешно добавлен. Вернуться назад.</a></p>
+    {% endif %}
+
+{% endblock %}
